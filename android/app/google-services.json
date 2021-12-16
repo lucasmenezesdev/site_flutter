@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "440175572810",
+    "project_id": "sincroneasy-site",
+    "storage_bucket": "sincroneasy-site.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:440175572810:android:eeac5a25a3ec6bb58873b3",
+        "android_client_info": {
+          "package_name": "com.example.siteflutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "440175572810-188mu1j0u4ne1a0a6nbbd6i8666uc6ln.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEUGSLAMqTQjxUudMkNNJQFjY9SJZwHHc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "440175572810-188mu1j0u4ne1a0a6nbbd6i8666uc6ln.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
