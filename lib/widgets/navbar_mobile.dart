@@ -3,7 +3,7 @@ import 'package:siteflutter/helpers/style.dart';
 
 Widget mobileNavBar(GlobalKey<ScaffoldState> key) => AppBar(
       leading: IconButton(
-        icon: Icon(Icons.menu),
+        icon: const Icon(Icons.menu),
         color: blueDetails,
         onPressed: () {
           key.currentState?.openDrawer();

@@ -14,7 +14,7 @@ class CustomButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(6),
         border: Border.all(color: blueDetails, width: 2),
       ),
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Text(
         text,
         style: GoogleFonts.montserrat(

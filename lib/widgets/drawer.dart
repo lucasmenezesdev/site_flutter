@@ -10,7 +10,7 @@ class SideMenu extends StatelessWidget {
     return Drawer(
       child: Container(
         color: mainOrange,
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -25,8 +25,8 @@ class SideMenu extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 5),
               child: Divider(),
             ),
             InkWell(
@@ -39,8 +39,8 @@ class SideMenu extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 5),
               child: Divider(),
             ),
             InkWell(
@@ -53,8 +53,8 @@ class SideMenu extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 5),
               child: Divider(),
             ),
             InkWell(

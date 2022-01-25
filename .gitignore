@@ -31,8 +31,10 @@
 .pub/
 /build/
 
+
 # Web related
 lib/generated_plugin_registrant.dart
+lib/helpers/firebase_config.dart
 
 # Symbolication related
 app.*.symbols
