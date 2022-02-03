@@ -14,7 +14,18 @@ String? name;
 String? imageUrl;
 
 Future getUser() async {
-  await Firebase.initializeApp();
+  final config = FirebaseConfig();
+  await Firebase.initializeApp(
+    options: FirebaseOptions(
+      apiKey: config.apiKey,
+      appId: config.appId,
+      messagingSenderId: config.messagingSenderId,
+      projectId: config.projectId,
+      authDomain: config.authDomain,
+      storageBucket: config.storageBucket,
+      measurementId: config.measurementId,
+    ),
+  );
 
   SharedPreferences prefs = await SharedPreferences.getInstance();
   bool authSignedIn = prefs.getBool('auth') ?? false;
@@ -35,10 +46,12 @@ Future<User?> signInWithEmailPassword(String email, String password) async {
   final config = FirebaseConfig();
   await Firebase.initializeApp(
     options: FirebaseOptions(
-        apiKey: config.apiKey,
-        appId: config.appId,
-        messagingSenderId: config.messagingSenderId,
-        projectId: config.projectId),
+      apiKey: config.apiKey,
+      appId: config.appId,
+      messagingSenderId: config.messagingSenderId,
+      projectId: config.projectId,
+      authDomain: config.authDomain,
+    ),
   );
   User? user;
 
@@ -82,10 +95,14 @@ Future<User?> signInWithGoogle() async {
   final config = FirebaseConfig();
   await Firebase.initializeApp(
     options: FirebaseOptions(
-        apiKey: config.apiKey,
-        appId: config.appId,
-        messagingSenderId: config.messagingSenderId,
-        projectId: config.projectId),
+      apiKey: config.apiKey,
+      appId: config.appId,
+      messagingSenderId: config.messagingSenderId,
+      projectId: config.projectId,
+      authDomain: config.authDomain,
+      storageBucket: config.storageBucket,
+      measurementId: config.measurementId,
+    ),
   );
 
   User? user;

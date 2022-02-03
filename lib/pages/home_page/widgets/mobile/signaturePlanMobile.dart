@@ -13,7 +13,7 @@ class SignaturePlanMobile extends StatelessWidget {
       height: 380,
       width: screenSize.width,
       child: Container(
-        margin: const EdgeInsets.only(top: 70),
+        margin: const EdgeInsets.only(top: 20),
         child: Stack(
           children: [
             Container(

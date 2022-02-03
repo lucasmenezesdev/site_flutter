@@ -25,7 +25,7 @@ class Layout extends StatelessWidget {
         extendBodyBehindAppBar: true,
         appBar: ResponsiveWidget.isSmallScreen(context)
             ? PreferredSize(
-                child: mobileNavBar(scaffoldKey),
+                child: mobileNavBar(scaffoldKey, context),
                 preferredSize: Size(screenSize.width, 70),
               )
             : PreferredSize(

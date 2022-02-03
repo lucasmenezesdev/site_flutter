@@ -217,6 +217,7 @@ class _AuthDialogState extends State<AuthDialog> {
                       setState(() {
                         loginStatus = 'Logado com sucesso';
                         loginStringColor = Colors.green;
+                        Navigator.of(context).pop();
                       });
                       print(result);
                     }
@@ -256,12 +257,6 @@ class _AuthDialogState extends State<AuthDialog> {
                     print(result);
                     if (result != null) {
                       Navigator.of(context).pop();
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          fullscreenDialog: true,
-                          builder: (context) => HomePage(),
-                        ),
-                      );
                     }
                   }).catchError((error) {
                     print('Registration Error: $error');
@@ -297,4 +292,15 @@ class _AuthDialogState extends State<AuthDialog> {
       ],
     );
   }
+}
+
+showLoginDialog(context) {
+  AuthDialog alerta = AuthDialog();
+  // exibe o dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alerta;
+    },
+  );
 }

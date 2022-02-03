@@ -24,6 +24,13 @@ class _BannerMobileState extends State<BannerMobile> {
         alignment: Alignment.center,
         children: [
           Positioned(
+            top: 250,
+            child: Image.asset(
+              'assets/images/celulares.png',
+              width: 400,
+            ),
+          ),
+          Positioned(
             top: 500,
             child: Row(
               children: [

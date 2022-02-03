@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:siteflutter/constants/controllers.dart';
+import 'package:siteflutter/helpers/authentication.dart';
+import 'package:siteflutter/helpers/stripe_checkout.dart';
+
 import 'package:siteflutter/helpers/style.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:siteflutter/pages/signature_page/widgets/signature_page.dart';
@@ -31,11 +34,11 @@ class _NavBarState extends State<NavBar> {
       preferredSize: Size(screenSize.width, 1000),
       child: Container(
         color: mainOrange,
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.only(top: 20, bottom: 20),
         child: Row(
           children: [
-            const SizedBox(
-              width: 50,
+            SizedBox(
+              width: screenSize.width / 25,
             ),
             Image.asset(
               'assets/images/logo.png',
@@ -45,7 +48,7 @@ class _NavBarState extends State<NavBar> {
                 child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                SizedBox(width: screenSize.width / 20),
+                SizedBox(width: screenSize.width / 30),
                 InkWell(
                   onHover: (value) {
                     setState(() {
@@ -54,6 +57,7 @@ class _NavBarState extends State<NavBar> {
                   },
                   hoverColor: Colors.transparent,
                   onTap: () {
+                    Get.back();
                     navigationController.navigateTo("Home");
                   },
                   child: Column(
@@ -90,7 +94,7 @@ class _NavBarState extends State<NavBar> {
                   ),
                 ),
                 SizedBox(
-                  width: screenSize.width / 20,
+                  width: screenSize.width / 24.7,
                 ),
                 InkWell(
                   onHover: (value) {
@@ -134,7 +138,7 @@ class _NavBarState extends State<NavBar> {
                   ),
                 ),
                 SizedBox(
-                  width: screenSize.width / 20,
+                  width: screenSize.width / 24.7,
                 ),
                 InkWell(
                   onHover: (value) {
@@ -178,7 +182,7 @@ class _NavBarState extends State<NavBar> {
                   ),
                 ),
                 SizedBox(
-                  width: screenSize.width / 20,
+                  width: screenSize.width / 24.7,
                 ),
                 InkWell(
                   onHover: (value) {
@@ -222,7 +226,25 @@ class _NavBarState extends State<NavBar> {
                   ),
                 ),
                 SizedBox(
-                  width: screenSize.width / 15,
+                  width: screenSize.width / 10,
+                ),
+                Container(
+                  child: userEmail == null
+                      ? Text('')
+                      : CircleAvatar(
+                          radius: 15,
+                          backgroundImage:
+                              imageUrl != null ? NetworkImage(imageUrl!) : null,
+                          child: imageUrl == null
+                              ? Icon(
+                                  Icons.account_circle,
+                                  size: 30,
+                                )
+                              : Text(''),
+                        ),
+                ),
+                SizedBox(
+                  width: 5,
                 ),
                 InkWell(
                   onHover: (value) {
@@ -232,7 +254,7 @@ class _NavBarState extends State<NavBar> {
                   },
                   hoverColor: Colors.transparent,
                   onTap: () {
-                    showAlertDialog(context);
+                    userEmail == null ? showLoginDialog(context) : signOut();
                   },
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -240,14 +262,23 @@ class _NavBarState extends State<NavBar> {
                       const SizedBox(
                         height: 12,
                       ),
-                      Text(
-                        "Login",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: _isHovering[4] ? blueDetails : white,
-                        ),
-                      ),
+                      userEmail == null
+                          ? Text(
+                              "Login",
+                              style: GoogleFonts.montserrat(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: _isHovering[4] ? blueDetails : white,
+                              ),
+                            )
+                          : Text(
+                              "Sair",
+                              style: GoogleFonts.montserrat(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: _isHovering[4] ? blueDetails : white,
+                              ),
+                            ),
                       const SizedBox(
                         height: 5,
                       ),
@@ -281,8 +312,9 @@ class _NavBarState extends State<NavBar> {
                     ),
                     child: const Text('Assinatura'),
                     onPressed: () {
-                      Get.back();
-                      navigationController.navigateTo("Signature");
+                      (userEmail == null)
+                          ? {showLoginDialog(context), showErroDialog(context)}
+                          : {redirectToCheckout(context)};
                     }),
                 SizedBox(
                   width: screenSize.width / 40,
@@ -295,7 +327,7 @@ class _NavBarState extends State<NavBar> {
     );
   }
 
-  showAlertDialog(context) {
+  showLoginDialog(context) {
     AuthDialog alerta = AuthDialog();
     // exibe o dialog
     showDialog(
@@ -304,5 +336,20 @@ class _NavBarState extends State<NavBar> {
         return alerta;
       },
     );
+  }
+
+  showErroDialog(context) {
+    AlertDialog alerta = AlertDialog(
+      backgroundColor: Colors.transparent,
+      title: Text(
+        'Faça login antes de acessar a assinatura.',
+        style: GoogleFonts.montserrat(color: Colors.red),
+      ),
+    );
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alerta;
+        });
   }
 }

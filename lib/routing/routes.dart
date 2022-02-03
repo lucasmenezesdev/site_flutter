@@ -12,6 +12,9 @@ const AboutUsPageRoute = "/aboutus";
 const UpdatesDisplayName = "Updates";
 const UpdatesPageRoute = "/updates";
 
+const CheckoutDisplayName = 'Checkout';
+const CheckoutRoute = '/checkout';
+
 class MenuItem {
   final String name;
   final String route;
@@ -22,4 +25,5 @@ class MenuItem {
 List<MenuItem> sideMenuItems = [
   MenuItem(HomePageDisplayName, HomePageRoute),
   MenuItem(SignatureDisplayName, SignaturePageRoute),
+  MenuItem(CheckoutDisplayName, CheckoutRoute),
 ];

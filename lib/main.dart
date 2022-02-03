@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:siteflutter/helpers/authentication.dart';
 import 'package:siteflutter/layout.dart';
 import 'package:siteflutter/pages/404/error_page.dart';
 import 'package:siteflutter/pages/home_page/widgets/home_page.dart';
@@ -15,8 +16,25 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Future getUserInfo() async {
+    await getUser();
+    setState(() {});
+    print(uid);
+  }
+
+  @override
+  void initState() {
+    getUserInfo();
+    super.initState();
+  }
 
   // This widget is the root of your application.
   @override

@@ -3,6 +3,7 @@ import 'package:siteflutter/helpers/responsive.dart';
 
 import 'package:siteflutter/pages/home_page/widgets/desktop/benefits_plan.dart';
 import 'package:siteflutter/pages/home_page/widgets/desktop/signature_plan.dart';
+import 'package:siteflutter/pages/home_page/widgets/mobile/banner_signature.dart';
 
 import 'package:siteflutter/widgets/bottom_bar.dart';
 
@@ -20,6 +21,9 @@ class HomePage extends StatelessWidget {
         ? const CustomScrollView(slivers: [
             SliverToBoxAdapter(
               child: BannerMobile(),
+            ),
+            SliverToBoxAdapter(
+              child: BannerSignature(),
             ),
             SliverToBoxAdapter(
               child: SignaturePlanMobile(),
